@@ -88,7 +88,6 @@ def generate_sequence(n_plies):
     return accepted_sequences
 
 
-
 def calc_dist(p1, p2):
     return np.linalg.norm(p1-p2)
 
