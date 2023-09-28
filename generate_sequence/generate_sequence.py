@@ -116,8 +116,6 @@ def generate_best_laminate(xi1D, xi3D, n_plies):
             if cur_dist < dist:
                 dist = cur_dist
                 best_laminate = stack 
-
-    print(dist)
     return best_laminate
 
 
@@ -195,7 +193,6 @@ def generate_laminate_sequences(n_plies, n_sequences=None):
     return new_sequences
 
 
-
 def get_best_laminate_random(xi1D, xi3D, n_plies, n_sequences=500):
     sequences = generate_laminate_sequences(n_plies, n_sequences)
 
@@ -210,46 +207,4 @@ def get_best_laminate_random(xi1D, xi3D, n_plies, n_sequences=500):
         if cur_dist < dist:
             dist = cur_dist
             best_laminate = sequence
-    print(dist)
     return best_laminate
-    
-
-if __name__ == '__main__':
-    from time import time
-
-    ti = time()
- 
-    txt = f'panel_10 = '
-    txt += str(get_best_laminate_random(-0.42, -0.15, 174))
-
-    txt += f'\n\n panel_11 = '
-    txt += str(get_best_laminate_random(-0.09, -0.83, 124))
-
-    txt += f'\n\n panel_12 = '
-    txt += str(get_best_laminate_random(-0.02, -0.98, 80))
-
-    txt += f'\n\n panel_13 = '
-    txt += str(get_best_laminate_random(0.00, -1.00, 80))
-
-    txt += f'\n\n panel_14 = '
-    txt += str(get_best_laminate_random(-0.20, -0.59, 144))
-
-    txt += f'\n\n panel_15 = '
-    txt += str(get_best_laminate_random(-0.50, 0.00, 178))
-
-    txt += f'\n\n panel_16 = '
-    txt += str(get_best_laminate_random(-0.42, -0.17, 178))
-
-    txt += f'\n\n panel_17 = '
-    txt += str(get_best_laminate_random(-0.08, -0.84, 128))
-
-    txt += f'\n\n panel_18 = '
-    txt += str(get_best_laminate_random(0.00, -1.00, 88))
-
-    print(txt)
-    #file = r'E:\Rafael-Documentos-trabalhos\PERIODOS\ITA-2019--\0 - TESE\_works\box_structural_optimization\8th trial2\loads\LAMINATION_RULE.txt'
-
-#    with open(file, 'w') as f:
-#        f.write(txt)
-
-    print(time()-ti)
