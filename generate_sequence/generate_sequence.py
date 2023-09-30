@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 from itertools import product
 from random import choices
@@ -192,18 +193,33 @@ def generate_laminate_sequences(n_plies, n_sequences=None):
     return new_sequences
 
 
-def get_best_laminate_random(xi1D, xi3D, n_plies, n_sequences=500):
+def get_best_laminate_random(xi1D, xi3D, n_plies, n_sequences=500, detailed=False):
     sequences = generate_laminate_sequences(n_plies, n_sequences)
 
     dist = 9999.9
     p1 = np.array([xi1D, xi3D])
     mat = OrthotropicMaterial(1000, 1000, 0.3, 2000, 0.1)
 
-    for sequence in sequences:
-        lam = LaminateProperty(sequence, mat)
+    rankedsolutions = []
+    for s in sequences:
+        lam = LaminateProperty(s, mat)
         p2 = np.array([lam.xiD[0], lam.xiD[2]])
-        cur_dist = calc_dist(p1, p2)
-        if cur_dist < dist:
-            dist = cur_dist
-            best_laminate = sequence
-    return best_laminate
+        rankedsolutions.append(
+            (calc_dist(p1, p2), s)
+        )
+    rankedsolutions.sort()
+
+    if not detailed:
+        return rankedsolutions[0][1]
+    else:
+        print('BEST SOLUTION IS')
+        print(rankedsolutions[0])
+
+        distances_sorted = []
+        for d, s in rankedsolutions:
+            distances_sorted.append(d)
+        distances_sorted.reverse()     
+
+        iters = range(len(rankedsolutions))
+        plt.plot(iters, distances_sorted)
+        return rankedsolutions[0][1]
