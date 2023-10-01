@@ -294,7 +294,7 @@ if __name__ == '__main__':
 
     for nplies in range(10, 201):
         ti = time.time()
-        file_name = f'{nplies}_plies.py'
+        file_name = f'db_{nplies}_plies.py'
         database = generate_database(nplies)
         txt = f'db_{nplies}_plies = '
         txt += str(database)
