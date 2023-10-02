@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from itertools import product
-from random import choices
+from random import choices, random
 
 from composipy import OrthotropicMaterial, LaminateProperty
 
@@ -151,14 +151,17 @@ def generate_random_sequence(n_plies, n_sequences=500):
         if cur_combination_seq[n_plies] < n_sequences:
             return generate_sequence(n_plies)
 
+    p0, p90, p45 = random(), random(), random()
     accepted_sequences = []
     while len(accepted_sequences) <n_sequences:
-        combination = [choices([0, 1, 2, 3])[0] for i in range(n_plies)]
+        combination = [choices([0, 1, 2, 3], weights=(p0, p90, p45, p45)
+                               )[0] for i in range(n_plies)]
         if (_is_balanced(combination)
                 and _contiguity(combination)
                 and _10p_rule(combination)
                 ):
             accepted_sequences.append(combination)
+        p0, p90, p45 = random(), random(), random()
     return accepted_sequences
 
 
@@ -253,7 +256,7 @@ def _check_for_laminate(lpdatabase, xiD, criteria):
     
 
 
-def generate_database(n_plies, dist_criteria=0.05):
+def generate_database_brute_force(n_plies, dist_criteria=0.05):
     '''
     Given number of plies and filtering rules, returns a new permutation.
     '''
@@ -282,8 +285,70 @@ def generate_database(n_plies, dist_criteria=0.05):
             if not_in_database:
                 xiDt = (xiD[0], xiD[1])
                 database[xiDt] = stack
-
     return database
+
+
+
+def generate_database_brute_force(n_plies, dist_criteria=0.05):
+    '''
+    Given number of plies and filtering rules, returns a new permutation.
+
+    24 plies takes 1 hour. Not efficient to generate laminate with more plies
+    '''
+    n = round((n_plies+0.1)/2)
+    odd = isodd(n_plies)
+
+    permutations = _layup_permutations_product(n)
+    dist = 9999.9
+    mat = OrthotropicMaterial(1000, 1000, 0.3, 500, 0.1) #Dummy
+
+    database = {}
+
+    niterations = 0
+    for sequence in permutations:
+        niterations += 1
+        if (_is_balanced(sequence)
+                and _contiguity(sequence)
+                and _10p_rule(sequence)
+                ):
+            
+            stack = convert_sequence_to_symmetric_laminate(sequence, isodd=odd)
+            lam = LaminateProperty(stack, mat)
+            xiD = np.array([lam.xiD[0], lam.xiD[2]])
+            
+            not_in_database = _check_for_laminate(database, xiD, criteria=dist_criteria)
+            if not_in_database:
+                xiDt = (xiD[0], xiD[1])
+                database[xiDt] = stack
+    return database
+
+
+def generate_database_random(n_plies, dist_criteria=0.05, n_generation=50000):
+    '''
+    Given number of plies and filtering rules, returns a new permutation.
+
+    24 plies takes 1 hour. Not efficient to generate laminate with more plies
+    '''
+
+    dist = 9999.9
+    mat = OrthotropicMaterial(1000, 1000, 0.3, 500, 0.1) #Dummy
+
+    database = {}
+
+    niterations = 0
+    for _ in range(n_generation):
+        niterations += 1
+        stack = generate_laminate_sequences(n_plies, 1)[0]
+        lam = LaminateProperty(stack, mat)
+        xiD = np.array([lam.xiD[0], lam.xiD[2]])
+        
+        not_in_database = _check_for_laminate(database, xiD, criteria=dist_criteria)
+        if not_in_database:
+            xiDt = (xiD[0], xiD[1])
+            database[xiDt] = stack
+    return database
+
+
 
 
 
@@ -292,15 +357,31 @@ if __name__ == '__main__':
     import time
 
 
-    for nplies in range(10, 201):
+    # Brute force ==============
+    # for nplies in range(10, 201):
+    #     ti = time.time()
+    #     file_name = f'db_{nplies}_plies.py'
+    #     database = generate_database_brute_force(nplies)
+    #     txt = f'db_{nplies}_plies = '
+    #     txt += str(database)
+
+    #     with open(file_name, 'w') as f:
+    #         f.write(txt)
+
+
+    # Random
+    nplies = list(range(143, 166)) + list(range(118, 128)) + list(range(75, 91))
+    nplies.sort(reverse=True)
+
+    for n in nplies:       
         ti = time.time()
-        file_name = f'db_{nplies}_plies.py'
-        database = generate_database(nplies)
-        txt = f'db_{nplies}_plies = '
+        file_name = f'db_{n}_plies.py'
+        database = generate_database_random(n, dist_criteria=0.05, n_generation=60000)
+        txt = f'db_{n}_plies = '
         txt += str(database)
 
         with open(file_name, 'w') as f:
             f.write(txt)
-        
-        print(f'{nplies} plies time is {time.time()-ti}')
+
+        print(f' time is {time.time()-ti}')
 
