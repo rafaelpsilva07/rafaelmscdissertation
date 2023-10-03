@@ -376,8 +376,8 @@ if __name__ == '__main__':
     for n in nplies:       
         ti = time.time()
         file_name = f'db_{n}_plies.py'
-        database = generate_database_random(n, dist_criteria=0.05, n_generation=60000)
-        txt = f'db_{n}_plies = '
+        database = generate_database_random(n, dist_criteria=0.05, n_generation=180000)
+        txt = f'db_{n}_plies_NEW = '
         txt += str(database)
 
         with open(file_name, 'w') as f:
