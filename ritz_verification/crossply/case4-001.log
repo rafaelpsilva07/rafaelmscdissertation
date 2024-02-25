@@ -1,0 +1,106 @@
+Simcenter Nastran 2020.1 (AMD64 Family 23 Model 113 Stepping 0 Windows 10  ) Control File:
+--------------------------------------------------------------------------------------
+Nastran BUFFSIZE=32769 $(c:/progra~1/siemens/femap2~1.2st/nastran/conf/nastran.rcf[4])
+Nastran BUFFPOOL=20.0X $(c:/progra~1/siemens/femap2~1.2st/nastran/conf/nastran.rcf[7])
+Nastran DIAGA=128 DIAGB=0 $(c:/progra~1/siemens/femap2~1.2st/nastran/conf/nastran.rcf[11])
+Nastran REAL=2137260032 $(Memory limit for MPI and other specialized modules)
+JID='d:/repositories/rafaelmscdissertation/ritz_verification/crossply/case4-001.dat'
+OUT='d:/repositories/rafaelmscdissertation/ritz_verification/crossply/case4-001'
+MEM=962473984
+MACH='AMD64 Family 23 Model 113 Stepping 0'
+OPER='Windows 10'
+OSV=' '
+MODEL='AMD Ryzen 7 3800X 8-Core Processor (DESKTOP-CM5B0JV)'
+CONFIG=8666
+NPROC=16
+symbol=DELDIR='c:/progra~1/siemens/femap2~1.2st/nastran/scnas/nast/del' $(program default)
+symbol=DEMODIR='c:/progra~1/siemens/femap2~1.2st/nastran/scnas/nast/demo' $(program default)
+symbol=SSSALTERDIR='c:/progra~1/siemens/femap2~1.2st/nastran/scnas/nast/misc/sssalter' $(program default)
+symbol=TPLDIR='c:/progra~1/siemens/femap2~1.2st/nastran/scnas/nast/tpl' $(program default)
+SDIR='c:/scratch/case4-001.T14420_49'
+DBS='c:/scratch/case4-001.T14420_49'
+SCR=yes
+SMEM=20.0X
+NEWDEL='c:/progra~1/siemens/femap2~1.2st/nastran/scnas/em64tntl/SSS'
+DEL='NXNDEF'
+AUTH='28000@LocalHost'
+AUTHQUE=0
+MSGCAT='c:/progra~1/siemens/femap2~1.2st/nastran/scnas/em64tntl/analysis.msg'
+MSGDEST='f06'
+PROG=FEMAP
+NEWS='c:/progra~1/siemens/femap2~1.2st/nastran/scnas/nast/news.txt'
+UMATLIB='libnxumat.dll'
+UCRPLIB='libucreep.dll'
+USOLLIB='libusol.dll'
+--------------------------------------------------------------------------------------
+NXN_ISHELLPATH=C:\PROGRA~1\Siemens\FEMAP2~1.2ST\nastran\bin
+NXN_JIDPATH=
+PATH=c:/progra~1/siemens/femap2~1.2st/nastran/scnas/em64tntl;c:/progra~1/siemens/femap2~1.2st/nastran/scnas/em64tntl/sysnoise;c:/progra~1/siemens/femap2~1.2st/nastran/scnas/em64tntl/samcef;c:/progra~1/siemens/femap2~1.2st/nastran/scnas/em64tntl/impi/bin;c:/progra~1/siemens/femap2~1.2st/nastran/scnas/em64tntl/monitor;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Pandoc\;D:\programs\Anaconda\Lib;C:\Program Files\Git\cmd;D:\programs\Anaconda;D:\programs\Anaconda\Library\mingw-w64\bin;D:\programs\Anaconda\Library\usr\bin;D:\programs\Anaconda\Library\bin;D:\programs\Anaconda\Scripts;C:\Users\Pichau\AppData\Local\Microsoft\WindowsApps;%PyCharm Community Edition%;C:\Users\Pichau\AppData\Local\Programs\Microsoft VS Code\bin
+Command Line: D:\repositories\rafaelmscdissertation\ritz_verification\crossply\CASE4-001.dat bat=no out=D:\repositories\rafaelmscdissertation\ritz_verification\crossply\ scr=yes
+Current Dir: D:\repositories\rafaelmscdissertation\ritz_verification\crossply
+Executable:  c:/progra~1/siemens/femap2~1.2st/nastran/scnas/em64tntl/analysis.exe
+NXN_MSG:     stderr
+FPE:         no
+--------------------------------------------------------------------------------------
+Current resource limits:
+ Physical memory:                    16318 MB
+ Physical memory available:           7573 MB
+ Paging file size:                   18750 MB
+ Paging file size available:          3592 MB
+ Virtual memory:                 134217727 MB
+ Virtual memory available:       134213570 MB
+--------------------------------------------------------------------------------------
+System configuration:
+ Hostname:         DESKTOP-CM5B0JV
+ Architecture:     em64tnt
+ Platform:         AMD64 Family 23 Model 113 Stepping 0 Windows 10  
+ Model:            AMD Ryzen 7 3800X 8-Core Processor
+ Clock freq.:      3893 MHz
+ Number of CPUs:   16
+ Executable:       standard
+ Raw model ID:     8666
+ Config number:    8666
+ Physical memory:  16318 MB
+ Virtual memory:   18750 MB
+ Numeric format:   64-bit little-endian IEEE.
+ Bytes per word:   8
+ Disk block size:  512 bytes (64 words)
+ Remote shell cmd: Remote capabilities not available.
+--------------------------------------------------------------------------------------
+Simcenter Nastran started  Sat Feb 24 14:54:49 HodB 2024
+ 14:54:49  Beginning Analysis
+
+ 14:54:49  Simcenter NASTRAN Authorization Information - System Attributes
+ 14:54:49  --------------------------------------------------------
+ 14:54:49  Model: AMD Ryzen 7 3800X 8-Core Process
+ 14:54:49  Machine: AMD64 Family 23 Model 113 Steppi
+ 14:54:49  OS: Windows 10
+ 14:54:49  Version:
+ 14:54:49  License File(s): 28000@LocalHost
+
+ 14:54:49  The FEMAP dll Search String is c:\progra~1\siemens\femap2~1.2st\auth_*.dll .
+ 14:54:49  Found the FEMAP authorization dll auth_2020_2.dll
+ 14:54:49  Loading FEMAP Authorization dll auth_2020_2.dll
+
+ 14:54:49  Simcenter NASTRAN Authorization Information - Checkout Successful
+ 14:54:49  -----------------------------------------------------------------
+ 14:54:49  License for module Simcenter Nastran Basic - FEMAP Desktop  checked out successfully
+
+ 14:54:50  Analysis started.
+ 14:54:50  Geometry access/verification to CAD part initiated (if needed).
+ 14:54:50  Geometry access/verification to CAD part successfully completed (if needed).
+ 14:54:50  Finite element model generation started.
+ 14:54:50  Finite element model generated 2646 degrees of freedom.
+ 14:54:50  Finite element model generation successfully completed.
+ 14:54:50  Application of Loads and Boundary Conditions to the finite element model started.
+ 14:54:50  Application of Loads and Boundary Conditions to the finite element model successfully completed.
+ 14:54:50  Application of Loads and Boundary Conditions to the finite element model started.
+ 14:54:50  Application of Loads and Boundary Conditions to the finite element model successfully completed.
+ 14:54:50  Solution of the system equations for linear statics started.
+ 14:54:50  Solution of the system equations for linear statics successfully completed.
+ 14:54:50  NSEXIT: EXIT(0)
+ 14:54:50  Analysis complete  0
+Real:        0.368 seconds ( 0:00:00.368)
+User:        0.203 seconds ( 0:00:00.203)
+Sys:         0.156 seconds ( 0:00:00.156)
+Simcenter Nastran finished Sat Feb 24 14:54:50 HodB 2024
